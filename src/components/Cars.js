@@ -1,40 +1,18 @@
-import Wrapper from "./Wrapper";
+const Car = ({color, children}) => {
 
-// Ceci est une fonction !
+    const colorInfo = color ? <p>Couleur: {color}</p> : <p>Couleur: "Néant"</p>;
 
-const Car = ({children, color}) => {
-
-    // Condition importante afin de mettre un text si pas de couleur défini par exemple.
-    let colorInfo = "";
-    if (color) {
-        colorInfo = color;
-    } else {
-        colorInfo = "Non définie";
+    if (children) {
+        return (
+            <div style={ {backgroundColor: 'pink', width: '400px', padding: '10px', margin: '5px auto'} }>
+                <p>Marque: { children }</p>
+                {colorInfo}
+            </div>
+        )
     }
 
-    return children && (
-        <Wrapper>
-            <p>Marque: {children}</p>
-            <p>Couleur: {colorInfo}</p>
-        </Wrapper>
-    )
-
-    // if(children) {
-    //     return (
-    //         <div style={ {backgroundColor: 'pink', width: '400px', padding: '10px', margin: '5px auto'} }>
-    //             <p>Marque: {children} </p>
-    //             {colorInfo}
-    //         </div>
-    //     )
-    // } else {
-    //     return (
-    //         <div style={ {backgroundColor: 'pink', width: '400px', padding: '10px', margin: '5px auto'} }>
-    //             <p>Information manquante</p>
-    //         </div>
-    //     )
-    // }
-
-
+    // return null // ce return est Facultatif
 }
 
-export default Car;
+export default Car
+ 
