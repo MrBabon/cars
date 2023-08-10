@@ -11,7 +11,7 @@ class App extends Component {
   render() {
     return (
       <div className='App'>
-        <Mycars title={this.state.titre} />
+        <Mycars/>
       </div>
     )
   }
