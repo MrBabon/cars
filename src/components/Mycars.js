@@ -5,9 +5,9 @@ class Mycars extends Component {
 
     state = {
         voitures: [
-            {name: 'Ford', color: 'red', year: 2000},
-            {name: 'Mercedes', color: 'black', year: 2010},
-            {name: 'Peugeot', color: 'green', year: 2020},
+            {name: 'Ford', color: 'red', year: 2023},
+            {name: 'Mercedes', color: 'black', year: 2022},
+            {name: 'Peugeot', color: 'green', year: 2011},
         ],
         titre: 'Mon Catalogue Voitures'
     }
@@ -20,23 +20,37 @@ class Mycars extends Component {
             updatedState
         })
     }
-    render() {
 
-        const year = new Date().getFullYear();
+    getAge = (year) => {
+        const now = new Date().getFullYear();
+        const age = now - year;
+        
+        // ans, an
+        let frenchYearStr = "";
+        if (age === 1) {
+            frenchYearStr = "an";
+        } else if (age > 1) {
+            frenchYearStr = "ans";
+        }
+        return `${age} ${frenchYearStr}`;
+    }
+    render() {
+        
         return (
             <div>
                 <h1>{this.state.titre}</h1>
                     
                 <button onClick={this.addTenYears}>+ 10 ans</button>
+
                 {
-                    this.state.voitures.map((voiture, index) => {
+                    this.state.voitures.map(({name, color, year}, index) => {
                         return(
                             <div key={index}>
-                                <Car name={voiture.name} color={voiture.color} year={year - voiture.year + ' ans'}/>
+                                <Car name={name} color={color} year={this.getAge(year)}/>
                             </div>
                         )
                     })
-                }
+                } 
             
             </div>
            
